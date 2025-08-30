@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Expense Categorizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Smart Expense Categorizer 💰</h2>
+    <form method="POST" enctype="multipart/form-data" class="upload">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if summary %}
+    <div class="summary">
+        <h3>Expense Summary:</h3>
+        <ul>
+            {% for cat, amt in summary.items() %}
+            <li>{{ cat }}: ₹{{ amt }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% for table in tables %}
+        {{ table|safe }}
+    {% endfor %}
+</body>
+</html>
